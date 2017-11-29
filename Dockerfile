@@ -21,10 +21,23 @@ RUN mkdir /etc/ansible/ /ansible
 RUN echo "[local]" >> /etc/ansible/hosts && \
     echo "localhost" >> /etc/ansible/hosts
 
-RUN \
-  curl -fsSL https://releases.ansible.com/ansible/ansible-2.4.0.0.tar.gz -o ansible.tar.gz && \
-  tar -xzf ansible.tar.gz -C ansible --strip-components 1 && \
-  rm -fr ansible.tar.gz /ansible/docs /ansible/examples /ansible/packaging
+ARG ansible_version=2.4.1.0
+
+RUN echo $ansible_version \
+  && curl -fsSL https://releases.ansible.com/ansible/ansible-$ansible_version.tar.gz -o ansible.tar.gz \
+  && tar -xzf ansible.tar.gz -C ansible --strip-components 1 \
+  && rm -fr ansible.tar.gz /ansible/docs /ansible/examples /ansible/packaging
+
+
+RUN apk update \
+    && apk add zip jq git make bash openssh\
+    && pip install boto3==1.4.7 \
+    && pip install awsebcli==3.10.6 \
+    && pip install j2==1.2.1 \
+    && pip install j2cli==0.3.1.post0 \
+    && pip install awscli==1.11.168 \
+    && curl "https://raw.githubusercontent.com/SumoLogic/sumologic-aws-lambda/master/cloudwatchlogs/cloudwatchlogs_lambda.js" > /tmp/cloudwatchlogs_lambda.js\
+    && zip -j /tmp/lambda_log_shipper.zip /tmp/cloudwatchlogs_lambda.js
 
 RUN mkdir -p /ansible/playbooks
 WORKDIR /ansible/playbooks
