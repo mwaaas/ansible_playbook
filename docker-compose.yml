@@ -1,0 +1,20 @@
+version: '3'
+services:
+  target:
+    image: philm/ansible_target:latest
+    container_name: ansible_target
+    expose:
+      - "22"
+    volumes:
+      - ~/.ssh/id_rsa.pub:/home/ubuntu/.ssh/authorized_keys
+    privileged: true
+
+  test:
+    build:
+      context: .
+    links:
+      - target
+    volumes:
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      - ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+      - ./test:/ansible/playbooks

@@ -15,3 +15,9 @@
     # perform an action that requires root access
     - name: create user foo
       user: name=foo
+
+    # perform action that requires aws
+    - name: test aws
+      shell: aws --version
+      register: aws_version
+    - debug: var=aws_version
