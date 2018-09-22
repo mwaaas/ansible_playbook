@@ -5,6 +5,7 @@ RUN apk update &&\
     apk add \
     curl \
     zip \
+    git \
     bash \
     python2 \
     openssh-client  && \
