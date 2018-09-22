@@ -34,8 +34,10 @@ RUN echo $ansible_version \
 
 
 
-RUN mkdir -p /ansible/playbooks
-WORKDIR /ansible/playbooks
+RUN mkdir -p /usr/src/app
+WORKDIR . /usr/src/app
+
+ONBUILD COPY . .
 
 ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_HOST_KEY_CHECKING false
@@ -45,4 +47,6 @@ ENV ANSIBLE_SSH_PIPELINING True
 ENV PATH /ansible/bin:$PATH
 ENV PYTHONPATH /ansible/lib
 
-ENTRYPOINT ["ansible-playbook"]
+ENTRYPOINT []
+
+CMD /bin/bash
