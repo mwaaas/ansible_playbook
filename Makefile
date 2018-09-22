@@ -1,4 +1,4 @@
-ansible_version=latest
+ansible_version=2.4.1.0
 image-version=latest
 
 

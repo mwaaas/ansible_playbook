@@ -9,7 +9,12 @@ RUN apk update &&\
     python2 \
     openssh-client  && \
   rm -rf /var/cache/apk/* &&\
-  pip install -r /tmp/requirements.txt
+  # install pip 2 and pip3
+  wget https://bootstrap.pypa.io/get-pip.py &&\
+  python2 get-pip.py &&\
+  python3 get-pip.py &&\
+  pip install -r /tmp/requirements.txt &&\
+  pip2 install -r /tmp/requirements.txt
 
 RUN mkdir /etc/ansible/ /ansible
 RUN echo "[local]" >> /etc/ansible/hosts && \
@@ -22,7 +27,9 @@ RUN echo $ansible_version \
   && tar -xzf ansible.tar.gz -C ansible --strip-components 1 \
   && rm -fr ansible.tar.gz /ansible/docs /ansible/examples /ansible/packaging \
   && wget https://github.com/cloudposse/github-commenter/releases/download/0.1.2/github-commenter_linux_386 -O /usr/bin/github-commenter \
-  && chmod +x /usr/bin/github-commenter
+  && chmod +x /usr/bin/github-commenter \
+  && wget https://github.com/cloudposse/github-status-updater/releases/download/0.1.3/github-status-updater_linux_386 -O /usr/bin/github-status-updater \
+  && chmod +x /usr/bin/github-status-updater
 
 
 
