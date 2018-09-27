@@ -38,6 +38,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 ONBUILD COPY . .
+ONBUILD RUN [ -f ./ansible_requirements.txt ] && pip  install -r ./ansible_requirements.txt|| echo "Ansible requirements file not found"
 
 ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_HOST_KEY_CHECKING false
