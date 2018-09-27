@@ -1,5 +1,5 @@
 ansible_version=2.4.1.0
-image-version=latest
+version=latest
 
 
 deploy:
