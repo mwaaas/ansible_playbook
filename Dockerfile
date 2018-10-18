@@ -8,6 +8,7 @@ RUN apk update &&\
     git \
     bash \
     python2 \
+    jq \
     openssh-client  && \
   rm -rf /var/cache/apk/* &&\
   # install pip 2 and pip3
