@@ -11,7 +11,9 @@ RUN apk update &&\
     jq \
     groff \
     less \
-    openssh-client  && \
+    openssh-client \
+    nano \
+    vim && \
   rm -rf /var/cache/apk/* &&\
   # install pip 2 and pip3
   wget https://bootstrap.pypa.io/get-pip.py &&\
