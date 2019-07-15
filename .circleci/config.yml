@@ -20,7 +20,9 @@ jobs:
       - *docker_setup
       - run:
           name: Deploy image to hub
-          command: make deploy version=$CIRCLE_TAG
+          command:
+            - make deploy ansible_version=2.4.1.0 version=$CIRCLE_TAG
+            - make deploy ansible_version=2.8.2 version=$CIRCLE_TAG
 
   deploy_latest:
     <<: *defaults
@@ -29,7 +31,7 @@ jobs:
     - *docker_setup
     - run:
         name: Deploy image to hub
-        command: make deploy version=latest
+        command: make deploy
 
 
 workflows:

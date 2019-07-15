@@ -26,7 +26,7 @@ RUN mkdir /etc/ansible/ /ansible
 RUN echo "[local]" >> /etc/ansible/hosts && \
     echo "localhost" >> /etc/ansible/hosts
 
-ARG ansible_version=2.4.1.0
+ARG ansible_version=latest
 
 RUN echo $ansible_version \
   && curl -fsSL https://releases.ansible.com/ansible/ansible-$ansible_version.tar.gz -o ansible.tar.gz \
