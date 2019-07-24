@@ -27,6 +27,8 @@ RUN echo "[local]" >> /etc/ansible/hosts && \
     echo "localhost" >> /etc/ansible/hosts
 
 ARG ansible_version=latest
+ARG terraform_version=0.12.5
+
 
 RUN echo $ansible_version \
   && curl -fsSL https://releases.ansible.com/ansible/ansible-$ansible_version.tar.gz -o ansible.tar.gz \
@@ -37,7 +39,12 @@ RUN echo $ansible_version \
   && wget https://github.com/cloudposse/github-status-updater/releases/download/0.1.3/github-status-updater_linux_386 -O /usr/bin/github-status-updater \
   && chmod +x /usr/bin/github-status-updater
 
-
+# install terraform
+RUN echo $terraform_version \
+    && curl -fSL https://releases.hashicorp.com/terraform/$terraform_version/terraform_${terraform_version}_linux_386.zip -o teraform.zip \
+    && unzip teraform.zip \
+    && cp terraform /usr/bin/ \
+    && rm teraform.zip
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

@@ -9,7 +9,7 @@ services:
       - ~/.ssh/id_rsa.pub:/home/ubuntu/.ssh/authorized_keys
     privileged: true
 
-  test:
+  ansible:
     build:
       context: .
     links:
