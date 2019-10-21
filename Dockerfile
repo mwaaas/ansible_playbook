@@ -28,6 +28,7 @@ RUN echo "[local]" >> /etc/ansible/hosts && \
 
 ARG ansible_version=latest
 ARG terraform_version=0.12.5
+ARG terragrunt_version="v0.20.5"
 
 
 RUN echo $ansible_version \
@@ -45,6 +46,10 @@ RUN echo $terraform_version \
     && unzip teraform.zip \
     && cp terraform /usr/bin/ \
     && rm teraform.zip
+
+# install terrugrunt
+ADD https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
+RUN chmod +x /usr/local/bin/terragrunt
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
