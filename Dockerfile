@@ -48,7 +48,7 @@ RUN echo $terraform_version \
     && rm teraform.zip
 
 # install terrugrunt
-ADD https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
+ADD https://github.com/gruntwork-io/terragrunt/releases/download/${terragrunt_version}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 RUN chmod +x /usr/local/bin/terragrunt
 
 RUN mkdir -p /usr/src/app
