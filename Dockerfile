@@ -29,6 +29,7 @@ RUN echo "[local]" >> /etc/ansible/hosts && \
 ARG ansible_version=latest
 ARG terraform_version=0.12.5
 ARG terragrunt_version="v0.20.5"
+ARG rancher_rke_version="v0.3.2"
 
 
 RUN echo $ansible_version \
@@ -50,6 +51,11 @@ RUN echo $terraform_version \
 # install terrugrunt
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/${terragrunt_version}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 RUN chmod +x /usr/local/bin/terragrunt
+
+# installing rke
+ARG rancher_rke_path="/usr/local/bin/rke"
+ADD https://github.com/rancher/rke/releases/download/${rancher_rke_version}/rke_linux-amd64 ${rancher_rke_path}
+RUN chmod +x ${rancher_rke_path}
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
