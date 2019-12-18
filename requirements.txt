@@ -4,3 +4,5 @@ awscli==1.16.18
 boto3==1.9.8
 boto==2.49.0
 awsebcli==3.16.0
+ansible-galaxy-local-deps==0.0.17
+
