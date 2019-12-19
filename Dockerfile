@@ -52,6 +52,12 @@ RUN echo $terraform_version \
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/${terragrunt_version}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 RUN chmod +x /usr/local/bin/terragrunt
 
+# install ansible terraform-inventory
+ARG ansible_terraform_inventory_version="0.6"
+ARG ansible_terraform_inventory_path="/usr/local/bin/terraform-inventory"
+ADD https://github.com/adammck/terraform-inventory/releases/download/v${ansible_terraform_inventory_version}/terraform-inventory_${ansible_terraform_inventory_version}_linux_amd64.zip /tmp/foo
+RUN unzip /tmp/foo && cp terraform-inventory /usr/local/bin/ && chmod +x ${ansible_terraform_inventory_path}
+
 # installing rke
 ARG rancher_rke_path="/usr/local/bin/rke"
 ADD https://github.com/rancher/rke/releases/download/${rancher_rke_version}/rke_linux-amd64 ${rancher_rke_path}
