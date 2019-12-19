@@ -53,7 +53,7 @@ ADD https://github.com/gruntwork-io/terragrunt/releases/download/${terragrunt_ve
 RUN chmod +x /usr/local/bin/terragrunt
 
 # install ansible terraform-inventory
-ARG ansible_terraform_inventory_version="0.6"
+ARG ansible_terraform_inventory_version="0.9"
 ARG ansible_terraform_inventory_path="/usr/local/bin/terraform-inventory"
 ADD https://github.com/adammck/terraform-inventory/releases/download/v${ansible_terraform_inventory_version}/terraform-inventory_${ansible_terraform_inventory_version}_linux_amd64.zip /tmp/foo
 RUN unzip /tmp/foo && cp terraform-inventory /usr/local/bin/ && chmod +x ${ansible_terraform_inventory_path}
