@@ -29,7 +29,7 @@ RUN echo "[local]" >> /etc/ansible/hosts && \
 ARG ansible_version=latest
 ARG terraform_version=0.12.5
 ARG terragrunt_version="v0.20.5"
-ARG rancher_rke_version="v0.3.2"
+ARG rancher_rke_version="v1.0.4"
 
 
 RUN echo $ansible_version \
