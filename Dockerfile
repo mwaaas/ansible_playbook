@@ -78,6 +78,7 @@ ENV ANSIBLE_SSH_PIPELINING True
 ENV PATH /ansible/bin:$PATH
 ENV PYTHONPATH /ansible/lib
 
-ENTRYPOINT []
+COPY entrypoint.sh /bin/
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD /bin/bash
